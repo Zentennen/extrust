@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "ext"
+name = "extrust"
 version = "0.1.0"
