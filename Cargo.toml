@@ -1,7 +1,11 @@
 [package]
 name = "extrust"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 license = "GPL-3.0+"
 description = "A library of utilities intended as an extension of the standard library."
 repository = "https://github.com/Zentennen/ext"
+
+[dependencies]
+anyhow = "1.0.53"
+thiserror = "1.0.30"
