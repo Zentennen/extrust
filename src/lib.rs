@@ -13,6 +13,13 @@ macro_rules! ifn {
     }
 }
 
+#[macro_export]
+macro_rules! pifn {
+    () => {
+        #[inline(always)] pub fn
+    }
+}
+
 pub fn cin<T>() -> Res<T> 
 where T: FromStr, <T as FromStr>::Err: Error + Send + Sync + 'static
 {
