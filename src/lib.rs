@@ -6,20 +6,6 @@ use std::fmt::Display;
 pub type Er = anyhow::Error;
 pub type Res<T> = anyhow::Result<T>;
 
-#[macro_export]
-macro_rules! ifn {
-    () => {
-        #[inline(always)] fn
-    }
-}
-
-#[macro_export]
-macro_rules! pifn {
-    () => {
-        #[inline(always)] pub fn
-    }
-}
-
 pub fn cin<T>() -> Res<T> 
 where T: FromStr, <T as FromStr>::Err: Error + Send + Sync + 'static
 {
