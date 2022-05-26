@@ -3,8 +3,7 @@
 use std::error::Error;
 use std::io;
 use std::str::FromStr;
-use std::fmt::Display;
-pub use anyhow;
+use std::fmt::Debug;
 
 pub type Er = anyhow::Error;
 pub type Res<T> = anyhow::Result<T>;
@@ -19,6 +18,6 @@ where T: FromStr, <T as FromStr>::Err: Error + Send + Sync + 'static
     Ok(input.trim().parse()?)
 }
 
-pub fn cout<T: Display>(output: T){
-    println!("{}", output);
+pub fn cout<T: Debug>(output: T){
+    println!("{output:?}");
 }
