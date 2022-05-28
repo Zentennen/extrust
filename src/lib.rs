@@ -22,14 +22,24 @@ pub fn cout<T: Debug>(output: T){
     println!("{output:?}");
 }
 
-pub trait CharContainer {
+pub trait Utf8Container {
     fn slice(&self, start: usize, end: usize) -> &str;
+    fn from(&self, start: usize) -> &str;
+    fn to(&self, end: usize) -> &str;
 }
 
-impl CharContainer for str {
+impl Utf8Container for str {
     fn slice(&self, start: usize, end: usize) -> &str {
         let start = self.char_indices().nth(start).unwrap().0;
         let end  = self.char_indices().nth(end).unwrap().0;
         &self[start..end]
+    }
+    fn from(&self, start: usize) -> &str {
+        let start = self.char_indices().nth(start).unwrap().0;
+        &self[start..]
+    }
+    fn to(&self, end: usize) -> &str {
+        let end  = self.char_indices().nth(end).unwrap().0;
+        &self[..end]
     }
 }
