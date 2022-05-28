@@ -26,7 +26,7 @@ pub trait CharContainer {
     fn slice(&self, start: usize, end: usize) -> &str;
 }
 
-impl CharContainer for String {
+impl CharContainer for str {
     fn slice(&self, start: usize, end: usize) -> &str {
         let start = self.char_indices().nth(start).unwrap().0;
         let end  = self.char_indices().nth(end).unwrap().0;
