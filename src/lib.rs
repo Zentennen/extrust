@@ -21,3 +21,15 @@ where T: FromStr, <T as FromStr>::Err: Error + Send + Sync + 'static
 pub fn cout<T: Debug>(output: T){
     println!("{output:?}");
 }
+
+pub trait CharContainer {
+    fn slice(&self, start: usize, end: usize) -> &str;
+}
+
+impl CharContainer for String {
+    fn slice(&self, start: usize, end: usize) -> &str {
+        let start = self.char_indices().nth(start).unwrap().0;
+        let end  = self.char_indices().nth(end).unwrap().0;
+        &self[start..end]
+    }
+}
