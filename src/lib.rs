@@ -19,7 +19,7 @@ where T: FromStr, <T as FromStr>::Err: Error + Send + Sync + 'static
 }
 
 pub fn cout<T: Debug>(output: T){
-    println!("{output:?}");
+    println!("{output:#?}");
 }
 
 pub trait Utf8Container {
