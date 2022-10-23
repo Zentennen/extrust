@@ -19,7 +19,7 @@ where T: FromStr, <T as FromStr>::Err: Error + Send + Sync + 'static
 }
 
 pub fn cout<T: Debug>(output: T){
-    println!("{output:#?}");
+    println!("{output:?}");
 }
 
 pub trait Utf8Container {
@@ -29,6 +29,22 @@ pub trait Utf8Container {
 }
 
 impl Utf8Container for str {
+    fn slice(&self, start: usize, end: usize) -> Option<&str> {
+        let start = self.char_indices().nth(start)?.0;
+        let end  = self.char_indices().nth(end)?.0;
+        Some(&self[start..end])
+    }
+    fn from(&self, start: usize) -> Option<&str> {
+        let start = self.char_indices().nth(start)?.0;
+        Some(&self[start..])
+    }
+    fn to(&self, end: usize) -> Option<&str> {
+        let end  = self.char_indices().nth(end)?.0;
+        Some(&self[..end])
+    }
+}
+
+impl Utf8Container for String {
     fn slice(&self, start: usize, end: usize) -> Option<&str> {
         let start = self.char_indices().nth(start)?.0;
         let end  = self.char_indices().nth(end)?.0;
